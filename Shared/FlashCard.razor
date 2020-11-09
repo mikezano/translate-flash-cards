@@ -1,0 +1,64 @@
+﻿<div class="flash-card card border-0 @(isFlipped ? "flash--is-flipped": String.Empty)">
+    <div class="flash-card__content">
+        <div class="flash-card__front">
+            <h1>Title</h1>
+            <h3>Word</h3>
+            <button class="btn btn-primary" @onclick="Flip">Flip</button>
+            <input type="text" />
+        </div>
+        <div class="flash-card__back">
+            <p>Definition</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .flash-card {
+        position: absolute;
+        perspective: 500px;
+        width: 300px;
+        height: 300px;
+    }
+
+    .flash-card__content {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        transition: transform 1s;
+        transform-style: preserve-3d;
+    }
+
+    .flash-card:hover .flash-card__content {
+        transform: rotateY(180deg);
+        transition: transform 0.5s;
+    }
+
+    .flash-card__front, .flash-card__back {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: white;
+ 
+        color: #03446A;
+        text-align: center;
+        border-radius: 5px;
+        backface-visibility: hidden;
+    }
+
+    .flash-card__back {
+        transform: rotateY(180deg);
+        background-color: orange;
+        color: white;
+    }
+
+</style>
+
+@code {
+    private bool isFlipped = false;
+    private void Flip(MouseEventArgs e)
+    {
+        Console.WriteLine("hi");
+        isFlipped = !isFlipped;
+    }
+}
